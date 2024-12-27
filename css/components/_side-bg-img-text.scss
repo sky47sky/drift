@@ -1,0 +1,50 @@
+.side-bg-img-text {
+  background-color: #eeeeee;
+  background-size: cover;
+  background-position: center top;
+  padding: rem-calc(120 0 107);
+
+  @media screen and (max-width: $desktop-1024) {
+    background-position: 42% top;
+  }
+
+  @media screen and (max-width: $mobile1) {
+    background-image: none !important;
+    padding: rem-calc(80 0 100);
+  }
+
+  .sw {
+    display: flex;
+    justify-content: flex-end;
+
+    @media screen and (max-width: $mobile1) {
+      display: block;
+    }
+
+    .text {
+      width: 50%;
+
+      @media screen and (max-width: $mobile1) {
+        width: 100%;
+      }
+
+      p {
+        a {
+          color: darken($gold, 10%);
+          border-bottom: 2px dotted darken($gold, 10%);
+    
+          @include hover {
+            color: darken($gold, 20%);
+            border-color: darken($gold, 20%);
+          }
+        }
+      }
+    }
+
+    .hum {
+      align-self: flex-start;
+      margin: rem-calc(40) auto 0;
+      display: block;
+    }
+  }
+}

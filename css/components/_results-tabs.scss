@@ -1,0 +1,315 @@
+.results-tabs {
+  padding: rem-calc(90 0 50);
+
+  @media screen and (max-width: $mobile1) {
+    padding: rem-calc(70 0);
+  }
+
+  .form-select-container {
+    position: relative;
+    z-index: 1;
+    background: $gold;
+    display: none;
+    margin-bottom: rem-calc(30);
+
+    @media screen and (max-width: $mobile1) {
+      display: block;
+    }
+
+    select {
+      background: transparent !important;
+      cursor: pointer;
+      padding: rem-calc(13 10 11);
+      border: rem-calc(1) solid darken($gold, 10%);
+      @include font(18, 18);
+      box-shadow: none;
+      margin: 0;
+      height: auto;
+      line-height: 1;
+      box-sizing: border-box;
+      background: #f6f6f6;
+      color: $dblue;
+
+      &:focus {
+        border: rem-calc(1) solid $gold;
+        box-shadow: none;
+      }
+    }
+
+    &::after {
+      color: $black;
+      @extend .fas;
+      content: fa-content($fa-var-chevron-down);
+      display: block;
+      right: rem-calc(15);
+      position: absolute;
+      top: rem-calc(8);
+      transition: .4s;
+      transition-property: opacity, visibility;
+      font-size: rem-calc(20);
+      z-index: -1;
+    }
+  }
+
+  .results-select {
+    display: none;
+
+    @media screen and (max-width: $mobile1) {
+      display: block;
+    }
+  }
+
+  .results-tabs-top {
+    padding: rem-calc(0 0 39);
+    display: flex;
+    justify-content: flex-start;
+    background: none;
+    border: none;
+    margin: rem-calc(0 0 40);
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: $mobile1) {
+      display: none;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: rem-calc(-4);
+      background: linear-gradient(to right, rgba($gold, 1), rgba($gold, 1));
+      left: 0;
+      width: 100%;
+      height: rem-calc(4);
+      display: block;
+      z-index: 4;
+    }
+
+    .results-tabs-title {
+      padding: 0;
+      margin: 0;
+      
+      @media screen and (max-width: $mobile1) {
+        width: 25%;
+      }
+
+      &::before {
+        display: none;
+      }
+
+      a {
+        background: $white;
+        color: $dblue;
+        @include font(16, 16, 400, 0);
+        text-align: center;
+        padding: rem-calc(15 20 14);
+        margin: rem-calc(0 10 30 0);
+        border: rem-calc(1) solid #eee;
+        transition: .1s ease;
+
+        @media screen and (max-width: $desktop-1024) {
+          padding: rem-calc(16 20 13);
+          @include font(16, 16, 400, 0);
+        }
+
+        &.mixitup-control-active {
+          background: $teal;
+          color: $white;
+          border-color: $teal;
+          box-shadow: 1px 1px 2px rgba(black, .2);
+        }
+
+        &:not(.mixitup-control-active) {
+          @include hover {
+            background: lighten($gold,43%);
+            border-color: lighten($gold,33%);
+          }
+
+          span {
+            color: $gold;
+            font-weight: 400;
+          }
+        }
+
+        @media screen and (max-width: $mobile1) {
+          @include font(17, 17, 400, 0);
+          padding: rem-calc(20 5 18);
+          margin: rem-calc(0);
+          border-top-left-radius: rem-calc(0);
+          border-top-right-radius: rem-calc(0);
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: rem-calc(50);
+          text-align: center;
+          border-left: 1px solid lighten($black, 10%);
+        }
+
+        @media screen and (max-width: $mobile2) {
+          @include font(13, 13, 400, 0);
+        }
+      }
+    }
+  }
+
+  .results-tabs-content {
+    position: relative;
+    z-index: 1;
+    border: none;
+    background: none;
+    font-size: 0 !important;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media screen and (max-width: $mobile1) {
+      display: block;
+    }
+
+    &[data-in-view] {
+      .mix {
+        opacity: 0;
+        @include staggered-transitions(1, 10, 100, 200);
+        transform: translateY(rem-calc(20));
+        transition: .8s ease;
+      }
+    
+      &.is-in-view {
+        .mix {
+          opacity: 1;
+          transform: translateY(rem-calc(0));
+        }
+      }
+    }
+
+    .mix {
+      flex: 0 0 48%;
+      margin-bottom: rem-calc(55);
+      box-shadow: 1px 1px 3px rgba(black, .2);
+
+      @media screen and (max-width: $mobile1) {
+        margin-bottom: rem-calc(35);
+      }
+
+      /*
+      &:nth-child(3n + 2) {
+        margin-left: 4%;
+        margin-right: 4%;
+      }
+        */
+
+      .category {
+        position: relative;
+
+        .category__img {
+          display: block;
+          height: rem-calc(270);
+          position: relative;
+          overflow: hidden;
+
+          @media screen and (max-width: $mobile2) {
+            height: rem-calc(180);
+          }
+
+          img {
+            transition: .4s ease;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+          }
+        }
+  
+        .category__bottom {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: rgba(#f1f1f1, .94);
+          background: $gold;
+          width: 100%;
+          //border-top: rem-calc(2) solid rgba(#f1f1f1, .94);
+          overflow: hidden;
+
+          &::after {
+            @extend .fas;
+            content: fa-content($fa-var-chevron-right);
+            font-size: rem-calc(18);
+            transition: .2s ease;
+            position: absolute;
+            right: rem-calc(15);
+            bottom: rem-calc(10);
+            color: $black;
+
+            @media screen and (max-width: $mobile2) {
+              bottom: rem-calc(9);
+            }
+          }
+  
+          .category__bottom-title {
+            font-family: $rfont;
+            @include font(20, 24, 500, 0);
+            //text-transform: uppercase;
+            //text-shadow: 1px 1px 0px rgba(black, .1);
+            position: relative;
+            margin-bottom: 0;
+
+            @media screen and (max-width: $mobile2) {
+              @include font(18, 22);
+            }
+            
+            span {
+              color: white;
+              background: $gold;
+              position: relative;
+              display: inline-block;
+              padding: rem-calc(12 5 12 15);
+              z-index: 4;
+            }
+
+            &::after {
+              content: '';
+              display: block;
+              clip-path: polygon(0 0, 0% 100%, 100% 100%);
+              background: $gold;
+              position: absolute;
+              top: 0;
+              right: 0;
+              height: 100%;
+              width: rem-calc(40);
+              transform: translateX(98%);
+              z-index: 2;
+            }
+          }
+
+          .view-more {
+            @include font(14, 18, 400, 0);
+            color: $black;
+            position: absolute;
+            right: rem-calc(35);
+            z-index: 3;
+          }
+        }
+
+        @include hover {
+          .category__img {
+            img {
+              //opacity: .93;
+              transform: scale(1.04);
+            }
+          }
+
+          /*
+          .category__bottom {
+            &::after {
+              transform: translateX(rem-calc(3));
+            }
+          }
+            */
+        }
+      }
+    }
+  }
+}

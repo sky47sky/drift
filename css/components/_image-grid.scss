@@ -1,0 +1,163 @@
+.image-grid {
+  padding: rem-calc(0 0 100);
+
+  .sw {
+    width: calc(rem-calc(1400) + rem-calc(48));
+
+    &--narrow {
+      width: calc(rem-calc(1200) + rem-calc(48));
+    }
+
+    @media screen and (max-width: $desktop-1366) {
+      width: calc(rem-calc(1260) + rem-calc(48));
+
+      &--narrow {
+        width: calc(rem-calc(1060) + rem-calc(48));
+      }
+    }
+
+    @media screen and (max-width: $desktop-1024) {
+      width: calc(rem-calc(950) + rem-calc(48));
+
+      &--narrow {
+        width: calc(rem-calc(950) + rem-calc(48));
+      }
+    }
+
+    @media screen and (max-width: $mobile1) {
+      width: calc(100% - 40px);
+    }
+  }
+
+  .image-grid-container {
+    padding: rem-calc(12);
+
+    @media screen and (max-width: $mobile1) {
+      padding: 0;
+    }
+
+    .image-row {
+      display: flex;
+
+      @media screen and (max-width: $mobile1) {
+        display: block;
+      }
+
+      .image-container {
+        position: relative;
+        overflow: hidden;
+        height: rem-calc(240);
+        margin: rem-calc(12);
+
+        @media screen and (max-width: $mobile1) {
+          max-width: 100%;
+          width: rem-calc(300);
+          height: rem-calc(300);
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+        }
+
+        &.image-01 {
+          flex: 1;
+        }
+        
+        &.image-02 {
+          flex: 1;
+        }
+        
+        &.image-03 {
+          flex: 2;
+        }
+        
+        &.image-04 {
+          flex: 1;
+        }
+        
+        &.image-05 {
+          flex: 2;
+        }
+        
+        &.image-06 { 
+          flex: 2;
+        }
+        
+        &.image-07 {
+          flex: 1;
+        }
+        
+        &.image-08 {
+          flex: 3;
+        }
+        
+        &.image-09 { 
+          flex: 1;
+        }
+        
+        &.image-10 { 
+          flex: 1;
+        }
+        
+        &.image-11 {
+          flex: 1;
+        }
+        
+        &.image-12 {
+          flex: 1;
+        }
+
+        .image {
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+          position: relative;
+          overflow: hidden;
+          transition: .4s ease;
+  
+          @media screen and (max-width: $mobile1) {
+            flex-basis: auto;
+          }
+  
+          &::after {
+            content: '';
+            background-image: url(../img/dots1-bottom.png);
+            background-repeat: repeat-x;
+            background-position: center top;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: rem-calc(70);
+            height: 100%;
+            width: 100%;
+            transition: .7s ease;
+            opacity: 1;
+            z-index: 2;
+            transform: translateY(rem-calc(10));
+          }
+        }
+
+        @include hover {
+          .image {
+            transform: scale(1.06);
+
+            &::after {
+              opacity: 1;
+              transform: translateY(rem-calc(0));
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--gray-bg {
+    padding: rem-calc(100 0);
+    background: #f5f5f5;
+  }
+
+  &--black-bg {
+    padding: rem-calc(100 0);
+    background: black;
+  }
+}

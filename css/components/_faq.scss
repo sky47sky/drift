@@ -1,0 +1,132 @@
+.faq {
+  background: #f5f5f5;
+  padding: rem-calc(100 0);
+
+  &--no-bg {
+    background: none !important;
+  }
+
+  .faq__top {
+    text-align: center;
+    margin-bottom: rem-calc(50);
+    max-width: rem-calc(1000);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .accordion {
+    max-width: rem-calc(1100);
+    margin: 0 auto;
+
+
+    .accordion-item {
+      padding: 0;
+
+      &::before {
+        display: none;
+      }
+
+      .accordion-title {
+        background: $black;
+        border: 0;
+        color: $gold;
+        @include font(24, 29, 500, 0);
+        display: flex;
+        align-items: center;
+        padding-right: rem-calc(40);
+
+        &::before {
+          @extend .fas;
+          content: fa-content($fa-var-chevron-down);
+          transition: .4s ease;
+          font-size: rem-calc(24);
+          color: $gold;
+          margin-top: unset;
+          top: unset;
+        }
+      }
+
+      &.is-active {
+        .accordion-title {
+          &::before {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      h3 {
+        margin-top: rem-calc(35);
+        font-family: $rfont;
+        color: #282828;
+        @include font(23, 28, 500, 0);
+        margin-bottom: rem-calc(13);
+
+        &.heading-3 {
+          color: $blue;
+          margin: 0;
+        }
+
+      }
+
+      ul {
+        margin-bottom: rem-calc(32);
+        margin-left: rem-calc(20);
+        margin-top: rem-calc(13);
+    
+        li {
+          margin-bottom: rem-calc(10);
+          padding-left: rem-calc(25);
+          position: relative;
+        }
+    
+        ul,
+        ol {
+          margin-left: rem-calc(0);
+          margin-top: rem-calc(10);
+        }
+      }
+    
+      ul {
+        &>li {
+          &::before {
+            @extend .fas;
+            content: fa-content($fa-var-circle);
+            @include font(8, 8, 700, 0);
+            color: $blue;
+            transform: translateX(rem-calc(-20)) translateY(rem-calc(-4));
+            display: inline-block;
+            margin-right: rem-calc(-8);
+          }
+        }
+    
+        ul {
+          &>li::before {
+            font-weight: 400;
+          }
+        }
+      }
+
+      ol {
+        counter-reset: item;
+    
+        &>li {
+          counter-increment: item;
+    
+          &::before {
+            //color: $primary-color1;
+            content: counter(item,) '.';
+            @include font(20, 28, 500, 0);
+            font-family: $rfont;
+            transform: translateX(rem-calc(3));
+          }
+        }
+    
+        ol {
+          &>li::before {
+            content: counter(item, lower-alpha) '.';
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+.icon-columns {
+  padding: rem-calc(60 0);
+
+  .sw {
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: $mobile1) {
+      flex-wrap: wrap;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: rem-calc(350);
+
+      @media screen and (max-width: $mobile1) {
+        width: rem-calc(300);
+      }
+
+      &:not(:last-of-type) {
+        @media screen and (max-width: $mobile1) {
+          margin-bottom: rem-calc(40);
+        }
+      }
+
+      &:nth-child(2) {
+        margin-left: rem-calc(100);
+        margin-right: rem-calc(100);
+
+        @media screen and (max-width: $desktop-1024) {
+          margin-left: rem-calc(60);
+          margin-right: rem-calc(60);
+        }
+
+        @media screen and (max-width: $mobile1) {
+          margin-left: unset;
+          margin-right: unset;
+        }
+      }
+
+      img {
+        width: rem-calc(80);
+        height: rem-calc(80);
+        object-fit: contain;
+      }
+
+      span {
+        @include font(22, 25, 400, 0);
+        display: block;
+        margin-left: rem-calc(15);
+        color: $text-color;
+      }
+
+      @include hover {
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

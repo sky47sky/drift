@@ -1,0 +1,648 @@
+$mainborder: $gold;
+$thickness: 5;
+
+.course_info {
+  margin: rem-calc(90 0);
+
+  .course_info__top {
+    .sidebar__title {
+      @include font(28, 26, 400, 0);
+      text-transform: uppercase;
+      color: $teal;
+      margin-left: rem-calc(28);
+      margin-bottom: rem-calc(40);
+
+      @media screen and (max-width: $mobile1) {
+        margin-left: unset;
+        text-align: center;
+      }
+
+      strong {
+        @include font(28, 26, 700);
+        display: inline-block;
+        color: $teal;
+      }
+    }
+  }
+
+  .course_info__columns {
+    display: flex;
+
+    @media screen and (max-width: $mobile1) {
+      display: block;
+    }
+
+    .course_info__sidebar {
+      flex: 0 0 29.5%;
+
+      .title-bar {
+        padding: 0;
+        background: none;
+        
+        .special-menu-button {
+          color: white;
+          background: $gold;
+          display: block;
+          width: 100%;
+          text-align: left;
+          padding: rem-calc(10 10);
+          border-radius: rem-calc(6);
+        }
+      }
+
+      ul {
+        margin: 0;
+        border: 0;
+
+        li {
+          padding: 0;
+          margin: 0;
+          position: relative;
+
+          &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: rem-calc($thickness);
+            background: white;
+            z-index: 10;
+
+            @media screen and (max-width: $mobile1) {
+              display: none;
+            }
+          }
+
+          &:not(:last-of-type) {
+            a {
+              &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: rem-calc(-$thickness);
+                left: 0;
+                width: 100%;
+                height: rem-calc($thickness);
+                background: white;
+              }
+            }
+          }
+
+          &:not(:first-of-type) {
+            a {
+              &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: rem-calc(-($thickness*2));
+                left: 0;
+                width: 100%;
+                height: rem-calc($thickness);
+                background: #f1f1f1;
+                display: none;
+              }
+            }
+          }
+
+          a {
+            border-top: rem-calc($thickness) solid #f1f1f1;
+            border-left: rem-calc($thickness) solid #fff;
+            border-bottom: rem-calc($thickness) solid #f1f1f1;
+            color: $black;
+            background: #f1f1f1;
+            padding: rem-calc(20 25 25 28);
+            display: flex;
+            width: 100%;
+            position: relative;
+            transition: 0s;
+            transition: .1s ease;
+
+            @media screen and (max-width: $mobile1) {
+              padding: rem-calc(10 15);
+              border-left: 0;
+            }
+
+            &>strong {
+              display: block;
+              flex: 0 0 auto;
+              margin-right: rem-calc(15);
+              @include font(20, 26, 700, 0);
+            }
+  
+            &>span {
+              display: block;
+              @include font(20, 26, 400, 0);
+            }
+
+            @include hover {
+              background: darken(#f1f1f1, 5%);
+              border-color: darken(#f1f1f1, 5%);
+            }
+          }
+
+          &.is-active {
+            &::after {
+              content: '';
+              display: block;
+              position: absolute;
+              right: rem-calc(-$thickness);
+              top: rem-calc($thickness);
+              width: rem-calc($thickness);
+              height: calc(100% - (rem-calc($thickness*2)));
+              background: white;
+            }
+
+            &::before {
+              display: none;
+            }
+
+            a {
+              background: white;
+              border-top: rem-calc($thickness) solid $mainborder;
+              border-left: rem-calc($thickness) solid $mainborder;
+              border-bottom: rem-calc($thickness) solid $mainborder;
+              color: $black;
+
+              @media screen and (max-width: $mobile1) {
+                border-right: rem-calc($thickness) solid $mainborder;
+              }
+
+              &>span {
+                font-weight: 700;
+              }
+
+              &::after {
+                display: none;
+              }
+
+              &::before {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .course_info__content {
+      border: rem-calc($thickness) solid $mainborder;
+      flex: 0 0 70.5%;
+
+      @media screen and (max-width: $mobile1) {
+        border: 0;
+        margin-top: rem-calc(40);
+      }
+
+      .tabs-content {
+        border: 0;
+
+        .tabs-panel {
+          max-width: 100%;
+          padding: rem-calc(30 40 40);
+
+          @media screen and (max-width: $mobile1) {
+            padding: 0;
+          }
+
+          .h2 {
+            @include font(16, 20, 700, 100);
+            text-transform: uppercase;
+            margin-bottom: rem-calc(20);
+            position: relative;
+            color: $gold;
+
+            &--intro {
+              margin-bottom: rem-calc(10);
+            }
+
+            strong {
+              @include font(16, 20, 700, 100);
+              display: inline-block;
+            }
+
+            span {
+              background: white;
+              position: relative;
+              z-index: 2;
+              padding-right: rem-calc(10);
+            }
+
+            &::after {
+              content: '';
+              display: block;
+              background: rgba($gold, .6);
+              position: absolute;
+              left: 0;
+              top: 50%;
+              width: 100%;
+              height: rem-calc(1);
+              transform: translateY(-50%);
+            }
+          }
+
+          .course__intro {
+            margin-bottom: rem-calc(50);
+          }
+
+          .course__header {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background: #f1f1f1;
+            margin-bottom: rem-calc(50);
+
+            @media screen and (max-width: $mobile1) {
+              flex-direction: column;
+            }
+
+            .headerli {
+              margin-bottom: 0;
+              padding: rem-calc(10 20);
+              @include font(16, 20, 400, 0);
+              //display: flex;
+              align-items: flex-start;
+
+              @media screen and (max-width: $mobile1) {
+                flex: 1 1 auto !important;
+              }
+
+              &>strong {
+                @include font(16, 20, 700, 0);
+                text-transform: uppercase;
+                margin-right: rem-calc(8);
+                display: block;
+                color: black;
+
+                @media screen and (max-width: $mobile1) {
+                  display: inline-block;
+                }
+              }
+
+              &::before {
+                display: none;
+              }
+
+              &:not(:last-of-type) {
+                border-right: rem-calc(3) solid #fff;
+
+                @media screen and (max-width: $mobile1) {
+                  border-right: unset;
+                  border-bottom: rem-calc(3) solid #fff;
+                }
+              }
+
+              .cta {
+                margin-top: 0;
+                font-size: rem-calc(16);
+                padding: rem-calc(8 38 6 15);
+
+                @media screen and (max-width: $mobile1) {
+                  margin-left: auto;
+                  margin-right: auto;
+                }
+
+                span {
+                  position: relative;
+                  color: white;
+
+                  &::after {
+                    @extend .fas;
+                    content: fa-content($fa-var-external-link-alt);
+                    margin-left: rem-calc(9);
+                    color: white;
+                    position: absolute;
+                    right: rem-calc(-24);
+                    top: 50%;
+                    transform: translateY(-60%);
+                  }
+                }
+              }
+
+              &--1 {
+                flex: 0 0 rem-calc(100);
+
+                @media screen and (max-width: $mobile1) {
+                  order: 2;
+                }
+              }
+
+              &--2 {
+                flex: 1 1 70%;
+                @include font(22, 26, 500, 0);
+
+                @media screen and (max-width: $desktop-1024) {
+                  @include font(20, 24);
+                }
+
+                @media screen and (max-width: $mobile1) {
+                  order: 1;
+                  @include font(24, 29, 700, 0);
+                }
+
+                strong {
+                  display: block;
+                  margin-bottom: rem-calc(4);
+
+                  @media screen and (max-width: $mobile1) {
+                    display: none;
+                  }
+                }
+              }
+
+              &--3 {
+                flex: 0 1 30%;
+
+                @media screen and (max-width: $mobile1) {
+                  order: 3;
+                }
+
+                .price {
+                  display: block;
+                  @include font(14, 18, 400, 0);
+
+                  @media screen and (max-width: $desktop-1024) {
+                    @include font(12, 16);
+                  }
+
+                  @media screen and (max-width: $mobile1) {
+                    @include font(14, 18);
+                  }
+
+                  .amount {
+                    font-weight: 500;
+                  }
+                }
+              }
+
+              &--4 {
+                display: flex;
+                align-items: center;
+                flex: 0 0 rem-calc(206);
+
+                @media screen and (max-width: $mobile1) {
+                  order: 4;
+                }
+                
+                .cta {
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+
+          .course__contact_hours {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            border: 0;
+
+            @media screen and (max-width: $mobile1) {
+              flex-direction: column;
+              border-bottom: 0;
+            }
+
+            li {
+              margin: 0;
+              padding: 0;
+              position: relative;
+              overflow: hidden;
+
+              &:nth-child(1) {
+                border-top-left-radius: rem-calc(8);
+              }
+
+              &:nth-child(3) {
+                border-top-right-radius: rem-calc(8);
+              }
+
+              &:not(:last-of-type) {
+                margin-right: rem-calc(3);
+
+                @media screen and (max-width: $mobile1) {
+                  margin-right: unset;
+                  margin-bottom: rem-calc(3);
+                }
+              }
+
+              &::before {
+                display: none;
+              }
+
+              a {
+                border: 0;
+                color: $black;
+                background: rgba($teal, .1);
+                //background: none;
+                padding: rem-calc(8 30 8 59);
+                transition: .1s ease;
+                position: relative;
+
+                &::before {
+                  content: '';
+                  width: rem-calc(22);
+                  height: rem-calc(22);
+                  border-radius: 100%;
+                  background: #ddd;
+                  box-shadow: inset 1px 1px 1px rgba(black, .1);
+                  position: absolute;
+                  left: rem-calc(18);
+                  top: 50%;
+                  transform: translateY(-50%);
+                }
+
+                &::after {
+                  content: '';
+                  width: rem-calc(14);
+                  height: rem-calc(14);
+                  border-radius: 100%;
+                  background: $black;
+                  position: absolute;
+                  left: rem-calc(22);
+                  top: 50%;
+                  transform: translateY(calc(-50% + 0px));
+                  display: none;
+                }
+
+                strong {
+                  display: block;
+                  @include font(21, 23, 700, 0);
+                  text-transform: uppercase;
+                  //border-bottom: rem-calc(1) solid rgba(black, 1);
+                  padding-bottom: rem-calc(0);
+                  margin-bottom: rem-calc(0);
+                  white-space: nowrap;
+
+                  @media screen and (max-width: $desktop-1024) {
+                    @include font(18, 22);
+                  }
+                }
+
+                span {
+                  @include font(13, 14, 400, 0);
+                  text-transform: uppercase;
+                  border: rem-calc(1) solid rgba(black, .8);
+                  padding: rem-calc(1 4);
+                  margin-top: rem-calc(2);
+                  display: inline-flex;
+                  align-items: center;
+                  border-radius: rem-calc(4);
+                  background: black;
+                  color: white;
+
+                  strong {
+                    @include font(14, 15, 700, 0);
+                    display: inline-block;
+                    text-decoration: none;
+                    padding-bottom: 0;
+                    border: 0;
+                    margin-bottom: 0;
+                    color: $teal;
+                    margin-right: rem-calc(4);
+                  }
+                }
+
+                @include hover {
+                  background: darken(rgba($teal, .24), 0%);
+                }
+              }
+
+              &.is-active {
+                a {
+                  background: $teal;
+                  color: $black;
+
+                  &::before {
+                    background: #eee;
+                  }
+
+                  &::after {
+                    display: block;
+                  }
+
+                  span {
+                    //background: darken(rgba($teal, 0), 10%);
+                  }
+                }
+              }
+            }
+          }
+
+          .course__contact_hours_content {
+            background: rgba($teal, .1);
+            position: relative;
+            border-radius: rem-calc(0);
+            border-top: rem-calc(4) solid $teal;
+
+            @media screen and (max-width: $mobile1) {
+              border-top: rem-calc(4) solid $teal;
+            }
+
+            .tabs-panel {
+              @media screen and (max-width: $mobile1) {
+                padding: rem-calc(30 20 40 10);
+              }
+
+              .heading2 {
+                @include font(16, 20, 700, 100);
+                text-transform: uppercase;
+                margin-bottom: rem-calc(20);
+                position: relative;
+                color: $teal;
+    
+                span {
+                  background: #edf8f7;
+                  position: relative;
+                  z-index: 2;
+                  padding-right: rem-calc(10);
+                }
+    
+                &::after {
+                  content: '';
+                  display: block;
+                  background: rgba($teal, 1);
+                  position: absolute;
+                  left: 0;
+                  top: 50%;
+                  width: 100%;
+                  height: rem-calc(1);
+                  transform: translateY(-50%);
+                }
+
+                &--1 {
+                  margin-top: rem-calc(10);
+                }
+
+                &--2 {
+                  margin-top: rem-calc(40);
+                }
+              }
+
+              .tg {
+                border-collapse: collapse;
+                border-spacing: 0;
+                max-width: 100%;
+                width: 100%;
+                
+                @media screen and (max-width: $mobile1) {
+                  overflow-x: auto;
+                  display: block;
+                  white-space: nowrap;
+                }
+
+                thead {
+                  border-color: black;
+
+                  tr {
+                    th {
+                      @include font(17, 22, 500, 50);
+                      text-transform: uppercase;
+                      background: $teal;
+                      color: black;
+                      padding: rem-calc(10 6);
+                    }
+                  }
+                }
+
+                tbody {
+                  tr {
+                    background: white;
+                    
+                    td {
+                      background: transparent;
+                      border: rem-calc(1) solid black;
+                      border: 0;
+                      @include font(17, 21, 400, 0);
+                      padding: rem-calc(6);
+                      
+                      &:not(:last-of-type) {
+                        //border-right: 0 !important;
+                      }
+                    }
+
+                    &:nth-child(even) {
+                      background: #f1f1f1;
+                    }
+                  }
+                }
+              }
+              
+              ol {
+                margin: 0;
+  
+                li {
+                  @include font(17, 22, 400, 0);
+
+                  &:not(:last-of-type) {
+                    margin-bottom: rem-calc(5);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

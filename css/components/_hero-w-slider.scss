@@ -1,0 +1,558 @@
+.hero-w-slider {
+  padding: rem-calc(90 0 70);
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (max-width: $mobile1) {
+    padding: rem-calc(100 0);
+  }
+
+  .sw {
+    display: block;
+
+    @media screen and (max-width: $mobile1) {
+      display: block;
+    }
+  }
+
+  .hero-w-slider__toggle {
+    position: absolute;
+    right: 0;
+    top: rem-calc(8);
+    cursor: pointer;
+    z-index: 10;
+    border: rem-calc(1) solid rgba(black, .3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(black, 1);
+    @include font(15, 15, 700, 0);
+    text-transform: uppercase;
+    padding: rem-calc(10 0 7);
+    border-radius: rem-calc(6);
+    transition: .2s ease;
+    width: rem-calc(100);
+    line-height: 1 !important;
+    //box-shadow: 1px 1px 2px rgba(black, .1);
+
+    @media screen and (max-width: $desktop-1024) {
+      padding: rem-calc(10 0 9);
+    }
+
+    &:hover {
+      background: rgba(black, .04);
+    }
+
+    &::before {
+      @extend .fas;
+      display: block;
+      width: rem-calc(26);
+      height: rem-calc(18);
+      margin-right: rem-calc(0);
+
+      @media screen and (max-width: $desktop-1024) {
+        height: rem-calc(16);
+      }
+    }
+
+    &.play {
+      &::before {
+        content: fa-content($fa-var-play);
+      }
+    }
+
+    &.pause {
+      &::before {
+        content: fa-content($fa-var-pause);
+      }
+    }
+  }
+
+  .hero-w-slider__top {
+    display: none;
+    border-bottom: rem-calc(2) solid black;
+    padding-bottom: rem-calc(10);
+    margin-bottom: rem-calc(40);
+
+    @media screen and (max-width: $mobile1) {
+      display: block;
+    }
+
+    h2 {
+      @include font(34, 39);
+    }
+  }
+
+  .hero-w-slider__left {
+    flex: 1 1 auto;
+
+    @media screen and (max-width: $mobile1) {
+      display: none;
+    }
+
+    h2 {
+      @include font(40, 47, 700, 0);
+      color: $gold;
+      margin-bottom: rem-calc(10);
+
+      @media screen and (max-width: $desktop-1024) {
+        @include font(45, 54);
+      }
+
+      @media screen and (max-width: $mobile1) {
+        @include font(35, 42);
+      }
+    }
+
+    .left__slider-text {
+      @include font(32, 38, 400, 0);
+      display: flex;
+      align-items: center;
+      max-height: rem-calc(64);
+      overflow: hidden;
+      position: relative;
+
+      @media screen and (max-width: $mobile1) {
+        display: block;
+        //max-height: rem-calc(44);
+      }
+
+      .text__word {
+        display: block;
+        @include font(32, 38, 700, 0);
+        color: $black;
+        flex: 1 0 auto;
+
+        @media screen and (max-width: $mobile1) {
+          @include font(24, 29, 400, 0);
+        }
+      }
+
+      .slider__word {
+        margin: 0;
+        padding: 0;
+        margin-left: rem-calc(10);
+        transform: translateY(rem-calc(3));
+
+        @media screen and (max-width: $mobile1) {
+          max-width: unset;
+          display: block;
+          margin-left: unset;
+          transform: translateY(rem-calc(0));
+        }
+
+        &[data-in-view] {
+          opacity: 0;
+          transform: translateY(rem-calc(5)) translateX(rem-calc(20));
+          transition: 1.2s .2s ease;
+
+          @media screen and (max-width: $mobile1) {
+            transform: translateY(rem-calc(3)) translateX(rem-calc(20));
+          }
+        
+          &.is-in-view {
+            opacity: 1;
+            transform: translateY(rem-calc(5)) translateX(rem-calc(0));
+
+            @media screen and (max-width: $mobile1) {
+              transform: translateY(rem-calc(3)) translateX(rem-calc(0));
+            }
+          }
+        }
+
+        li {
+          padding: 0;
+
+          &::before {
+            display: none;
+            padding: 0;
+          }
+
+          span {
+            color: $teal;
+            font-weight: bold;
+            border-bottom: 2px dotted $teal;
+            @include font(32, 38, 700, 0);
+
+            @media screen and (max-width: $mobile1) {
+              @include font(24, 29, 400, 0);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .hero-w-slider__right {
+    position: relative;
+    display: flex;
+    margin-top: rem-calc(30);
+    padding: rem-calc(50 40 40 0);
+
+    @media screen and (max-width: $mobile1) {
+      width: 100%;
+      display: block;
+      padding: 0;
+      margin-top: 0;
+    }
+
+    .right__slider {
+      flex: 0 1 calc(100% - rem-calc(255));
+      width: calc(100% - rem-calc(255));
+      margin-bottom: 0;
+      z-index: 2;
+      position: relative;
+
+      @media screen and (max-width: $mobile1) {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0;
+        order: 2;
+        width: 100%;
+      }
+
+      &[data-in-view] {
+        opacity: 0;
+        transform: translateY(rem-calc(20));
+        transition: 1.2s .2s ease;
+      
+        &.is-in-view {
+          opacity: 1;
+          transform: translateY(rem-calc(0));
+        }
+      }
+
+      .slick-autoplay-toggle-button {
+        display: none;
+      }
+
+      .slick-dots {
+        opacity: 0;
+      }
+
+      .slider__content {
+        display: inline-flex !important;
+
+        @media screen and (max-width: $mobile1) {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        &:not(:last-of-type) {
+          @media screen and (max-width: $mobile1) {
+            margin-bottom: rem-calc(80);
+          }
+        }
+
+        .content__img {
+          width: rem-calc(450);
+          height: rem-calc(350);
+          object-fit: cover;
+          object-position: center;
+          margin-right: rem-calc(40);
+
+          @media screen and (max-width: $desktop-1024) {
+            width: rem-calc(200);
+            height: rem-calc(150);
+            margin-right: rem-calc(30);
+          }
+
+          @media screen and (max-width: $mobile1) {
+            margin-right: unset;
+            width: rem-calc(380);
+            height: rem-calc(300);
+            max-width: 100%;
+            margin-bottom: rem-calc(35);
+          }
+        }
+
+        .content__text {
+          h2,
+          h3 {
+            &.hum {
+              span {
+                color: $teal;
+                font-weight: bold;
+              }
+
+              @media screen and (max-width: $mobile1) {
+                @include font(30, 35);
+              }
+            }
+          }
+
+          p {
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .right__nav {
+      flex: 0 0 rem-calc(280);
+      width: rem-calc(280);
+      height: rem-calc(280);
+      border-radius: rem-calc(20);
+      z-index: 1;
+      position: absolute;
+      right: rem-calc(10);
+      top: rem-calc(50);
+
+      @media screen and (max-width: $mobile1) {
+        display: none;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: rem-calc(145);
+        width: rem-calc(2);
+        border-right: rem-calc(2) dotted $gold;
+        position: absolute;
+        top: rem-calc(40);
+        right: rem-calc(40);
+        z-index: 1;
+        opacity: 1;
+
+        @media screen and (max-width: $mobile1) {
+          display: none;
+        }
+      }
+
+      .nav__ul {
+        padding: 0;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+
+        @media screen and (max-width: $mobile1) {
+          display: block;
+          transform: translateX(rem-calc(-10));
+        }
+
+        .slick-list {
+          display: none;
+        }
+  
+        .slick-dots {
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          margin: 0;
+          position: absolute;
+          right: rem-calc(20);
+          top: rem-calc(0);
+
+          @media screen and (max-width: $mobile1) {
+            position: relative;
+            right: unset;
+            top: 0;
+          }
+  
+          li {
+            padding: 0;
+            margin: 0;
+            width: auto;
+            height: auto;
+            display: flex;
+            justify-content: flex-end;
+            text-align: right;
+            margin-bottom: rem-calc(20);
+
+            @media screen and (max-width: $mobile1) {
+              margin-bottom: 0;
+              height: rem-calc(36);
+              justify-content: center;
+            }
+
+            &:not(:first-of-type) {
+              margin-bottom: rem-calc(30);
+            }
+  
+            &::before {
+              display: none;
+            }
+  
+            a {
+              border-bottom: 0;
+              padding: rem-calc(11 50 10 0);
+              display: flex;
+              align-items: center;
+              position: relative;
+
+              &::before {
+                content: '';
+                display: block;
+                width: rem-calc(22);
+                height: rem-calc(22);
+                border-radius: 100%;
+                background: lighten($gold, 0%);
+                position: absolute;
+                right: rem-calc(10);
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1;
+              }
+
+              &::after {
+                content: '';
+                display: block;
+                width: rem-calc(16);
+                height: rem-calc(16);
+                border-radius: 100%;
+                background: $teal;
+                position: absolute;
+                right: rem-calc(13);
+                top: 50%;
+                transition: .2s ease;
+                opacity: 0;
+                transform: scale(.2) translateY(-100%);
+                z-index: 2;
+              }
+
+              span {
+                display: block;
+                @include font(16, 21, 700, 0);
+                color: rgba($gold, 1);
+                width: rem-calc(150);
+                transition: .2s ease;
+                text-transform: uppercase;
+              }
+
+              &:hover {
+                span {
+                  color: $teal;
+                }
+              }
+            }
+  
+            &.slick-active {
+              a {
+                background: $teal;
+                border-radius: rem-calc(8);
+
+                &::before {
+                  background: white;
+                }
+
+                &::after {
+                  opacity: 1;
+                  transform: scale(1) translateY(-50%);
+                }
+
+                span {
+                  color: $white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .slider-progress {
+      width: 100%;
+      height: rem-calc(3);
+      background: rgba($black, .2);
+      max-width: 100%;
+      margin: 0 auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @media screen and (max-width: $mobile1) {
+        display: none;
+      }
+
+      .progress {
+        width: 0%;
+        height: rem-calc(3);
+        background: $black;
+      }
+    }
+  }
+
+  &--benefits {
+    padding: rem-calc(0 0 70);
+
+    @media screen and (max-width: $mobile1) {
+      padding: rem-calc(0 0 80);
+    }
+
+    .hero-w-slider__left {
+      .left__slider-text {
+        @include font(40, 47, 700, 0);
+        max-height: rem-calc(64);
+  
+        .text__word {
+          @include font(40, 47, 700, 0);
+        }
+
+        .slider__word {
+          li {
+            span {
+              @include font(40, 47, 700, 0);
+  
+              @media screen and (max-width: $mobile1) {
+                @include font(24, 29, 400, 0);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .hero-w-slider__right {
+      .right__slider {
+        flex: 0 1 calc(100% - rem-calc(355));
+        width: calc(100% - rem-calc(355));
+        min-height: rem-calc(300);
+
+        @media screen and (max-width: $mobile1) {
+          flex: 0 1 100%;
+          width: 100%;
+        }
+
+        .slider__content {
+          &:not(:last-of-type) {
+            @media screen and (max-width: $mobile1) {
+              margin-bottom: rem-calc(50);
+            }
+          }
+        }
+      }
+
+      .right__nav {
+        &::after {
+          top: rem-calc(25);
+          height: rem-calc(310);
+        }
+
+        .nav__ul {
+          .slick-dots {
+            li {
+              margin-bottom: rem-calc(15);
+
+              &:not(:first-of-type) {
+                margin-bottom: rem-calc(15);
+              }
+
+              a {
+                span {
+                  width: rem-calc(200);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .slider-progress {
+        background: rgba($black, 1);
+      }
+    }
+  }
+}

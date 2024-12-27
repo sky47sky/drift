@@ -1,0 +1,212 @@
+.contact-form {
+  padding: rem-calc(100 0);
+  position: relative;
+
+  @media screen and (max-width: $mobile1) {
+    padding: rem-calc(60 0 80);
+  }
+
+  .contact-form__top {
+    margin-bottom: rem-calc(50);
+  }
+
+  .sw {
+    display: flex;
+    justify-content: space-around;
+
+    @media screen and (max-width: $mobile1) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .contact-form__content {
+    flex: 0 0 rem-calc(400);
+
+    @media screen and (max-width: $mobile1) {
+      order: 2;
+      margin-top: rem-calc(70);
+      text-align: center;
+      flex: 1 1 auto;
+    }
+
+    .contact-form__content__inner {
+      .black {
+        width: rem-calc(340);
+        transform: translateX(rem-calc(-12));
+        margin-bottom: rem-calc(20);
+      }
+
+      a {
+        @include font(20, 26, 400, 0);
+        color: black;
+        padding: rem-calc(4 0);
+        display: flex;
+        align-items: center;
+        position: relative;
+        transition: .2s ease;
+        //text-transform: uppercase;
+        white-space: nowrap;
+
+        @media screen and (max-width: $desktop-1024) {
+          @include font(16, 23);
+        }
+
+        @media screen and (max-width: $mobile1) {
+          justify-content: center;
+          @include font(18, 25);
+        }
+
+        @include hover {
+          text-decoration: underline;
+        }
+
+        &::before {
+          @extend .fas;
+          display: block;
+          color: $gold;
+          font-size: rem-calc(20);
+          position: absolute;
+          left: 0;
+          top: rem-calc(4);
+
+          @media screen and (max-width: $mobile1) {
+            position: relative;
+            display: inline-block;
+            margin-right: rem-calc(5);
+            transform: translateY(rem-calc(-3));
+          }
+        }
+
+        &.address {
+          padding: rem-calc(4 0 4 30);
+
+          @media screen and (max-width: $mobile1) {
+            padding: rem-calc(4 0);
+          }
+          
+          &::before {
+            content: fa-content($fa-var-map-pin);
+            left: rem-calc(4);
+          }
+        }
+
+        &.email {
+          padding: rem-calc(4 0 4 30);
+
+          @media screen and (max-width: $mobile1) {
+            padding: rem-calc(4 0);
+          }
+          
+          &::before {
+            content: fa-content($fa-var-envelope);
+          }
+        }
+      }
+    }
+
+    .social {
+      padding-top: rem-calc(10);
+      display: flex;
+
+      @media screen and (max-width: $mobile1) {
+        justify-content: center;
+      }
+
+      a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: rem-calc(30);
+        height: rem-calc(30);
+        margin-right: rem-calc(30);
+        text-decoration: none;
+
+        @media screen and (max-width: $mobile1) {
+          margin-right: rem-calc(18);
+        }
+
+        @include hover {
+          &::after {
+            color: lighten($red, 0%);
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &::after {
+          content: '';
+          @extend .fab;
+          color: $blue;
+          font-size: rem-calc(32);
+          transition: .2s ease;
+
+        }
+
+        &.facebook {
+          &:after {
+            content: fa-content($fa-var-facebook-f);
+          }
+        }
+
+        &.linkedin {
+          &:after {
+            content: fa-content($fa-var-linkedin-in);
+          }
+        }
+
+        &.youtube {
+          &:after {
+            content: fa-content($fa-var-youtube);
+          }
+        }
+
+        &.twitter {
+          &:after {
+            content: fa-content($fa-var-twitter);
+          }
+        }
+      }
+    }
+  }
+
+  .contact-form__form {
+    flex: 0 0 rem-calc(500);
+
+    @media screen and (max-width: $desktop-1024) {
+      flex: 0 0 rem-calc(450);
+    }
+
+    @media screen and (max-width: $mobile1) {
+      order: 1;
+      max-width: 100%;
+
+      form {
+        width: rem-calc(450);
+        max-width: 100%;
+      }
+    }
+
+    &--map {
+      iframe {
+        height: rem-calc(500);
+
+        @media screen and (max-width: $mobile1) {
+          height: rem-calc(300);
+        }
+      }
+    }
+
+    .submit-row {
+      @media screen and (max-width: $mobile1) {
+        text-align: right;
+      }
+
+      .cta {
+        margin-top: rem-calc(10);
+      }
+    }
+  }
+}

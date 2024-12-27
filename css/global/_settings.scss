@@ -1,0 +1,542 @@
+* {
+  font-family: $rfont;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+html {
+  scroll-padding-top: rem-calc(70);
+
+  &.is-scroll-locked {
+    max-height: 100vh;
+    overflow-y: hidden;
+  }
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+
+  // sass-lint:disable no-vendor-prefixes
+  // always show scrollbars on webkit browsers
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: rem-calc(6);
+    width: rem-calc(6);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba($black, .1);
+    border-radius: rem-calc(3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba($black, .5);
+    border-radius: rem-calc(3);
+  }
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+/* General Globals ============================================================== */
+
+html {
+  //scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  color: $text-color;
+  @include font(20, 29, 400, 0);
+
+  .sitewrap {
+    p,
+    div,
+    li {
+      @include font(20, 29, 400, 0);
+    }
+  }
+}
+
+.sitewrap {
+  position: relative;
+}
+
+.hum { // hide until mobile
+  display: none !important;
+}
+
+@media screen and (max-width: $mobile1) {
+  .mh { // mobile hide
+    display: none !important;
+  }
+
+  .hum { // reveal on mobile
+    display: block !important;
+  }
+}
+
+
+
+
+
+
+/* Site Container Width ==================================================== */
+
+.sw,
+.hfsw {
+  width: rem-calc(1400);
+  margin: 0 auto;
+  position: relative;
+
+  &--narrow {
+    width: rem-calc(1200);
+  }
+}
+
+@media screen and (max-width: $desktop-1366) {
+  .sw,
+  .hfsw {
+    width: rem-calc(1260);
+
+    &--narrow {
+      width: rem-calc(1060);
+    }
+  }
+}
+
+@media screen and (max-width: $desktop-1024) {
+  .sw,
+  .hfsw {
+    width: rem-calc(950);
+
+    &--narrow {
+      width: rem-calc(950);
+    }
+  }
+}
+
+@media screen and (max-width: $mobile1) {
+  .sw,
+  .hfsw {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+
+    &--narrow {
+      width: calc(100% - 40px);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Headings =========================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $hfont;
+  //text-transform: uppercase;
+
+  span {
+    font-family: $hfont;
+  }
+}
+
+%h2,
+h2 {
+  @include font(40, 45, 700, 0);
+  margin-bottom: rem-calc(20);
+  color: $black;
+
+  strong {
+    color: $gold;
+    display: block;
+    @include font(50, 55, 700, 0);
+  }
+
+  @media screen and (max-width: $mobile1) {
+    @include font(30, 35);
+
+    strong {
+      @include font(30, 35);
+    }
+  }
+}
+
+
+
+
+/* List Styles =========================================================== */
+
+.sitewrap {
+  ul {
+    margin-bottom: rem-calc(30);
+    margin-left: rem-calc(20);
+    margin-top: rem-calc(30);
+
+    li {
+      margin-bottom: rem-calc(10);
+      padding-left: rem-calc(35);
+      position: relative;
+    }
+
+    ul,
+    ol {
+      margin-left: rem-calc(0);
+      margin-top: rem-calc(10);
+    }
+  }
+
+  ul {
+    li {
+      &::before {
+        @extend .fas;
+        content: fa-content($fa-var-circle);
+        @include font(8, 8, 700, 0);
+        left: rem-calc(10);
+        position: absolute;
+        top: rem-calc(10);
+      }
+    }
+
+    ul {
+      li::before {
+        font-weight: 400;
+      }
+    }
+
+    &.checkmarks {
+      margin-left: rem-calc(20);
+
+      &>li {
+        padding-left: rem-calc(40);
+
+        &::before {
+          @extend .fas;
+          content: fa-content($fa-var-check);
+          background: $teal;
+          color: $white;
+          width: rem-calc(26);
+          height: rem-calc(26);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: rem-calc(14);
+          border-radius: 100%;
+          top: rem-calc(2);
+          left: 0;
+        }
+
+        ul {
+          margin-left: 0 !important;
+        }
+      }
+    }
+  }
+
+  ol {
+    margin-bottom: rem-calc(32);
+    margin-left: rem-calc(20);
+    margin-top: rem-calc(33);
+
+    &--noleft {
+      margin-top: rem-calc(23);
+      margin-left: rem-calc(-7);
+    }
+
+    li {
+      margin-bottom: rem-calc(10);
+      padding-left: rem-calc(35);
+      position: relative;
+    }
+
+    ul,
+    ol {
+      margin-left: rem-calc(0);
+      margin-top: rem-calc(10);
+    }
+  }
+
+  ol {
+    counter-reset: item;
+
+    li {
+      counter-increment: item;
+
+      &::before {
+        color: $primary-color1;
+        content: counter(item,) '.';
+        font-weight: bold;
+        left: rem-calc(-3);
+        position: absolute;
+        top: 0;
+        //background: red;
+        width: rem-calc(30);
+        text-align: right;
+      }
+    }
+
+    ol {
+      li::before {
+        content: counter(item, lower-alpha) '.';
+      }
+    }
+  }
+}
+
+
+
+
+/* Text Links =========================================================== */
+a {
+  transition: .1s ease;
+}
+
+.sitewrap {
+  p,
+  li {
+    a {
+      color: $gold;
+      border-bottom: 2px dotted $gold;
+      text-decoration: none !important;
+
+      @include hover {
+        color: darken($gold, 10%);
+        border-color: darken($gold, 10%);
+      }
+
+      &.white {
+        color: $white;
+        border-bottom: 2px dotted $white;
+
+        @include hover {
+          color: $white;
+          border-color: $white;
+        }
+      }
+    }
+  }
+}
+
+%white-link {
+  color: $white;
+  border-bottom: 2px dotted $white;
+
+  @include hover {
+    color: $white;
+    border-color: $white !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Button Styles =========================================================== */
+
+%cta,
+.cta,
+.sitewrap .cta,
+input[type='submit'],
+input[type='button'] {
+  @include font(18, 22, 700);
+  background: darken($gold, 0%);
+  border: rem-calc(2) solid darken($gold, 0%);
+  color: $black !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  float: none;
+  letter-spacing: 0;
+  padding: rem-calc(11 20);
+  position: relative;
+  text-align: center;
+  text-decoration: none !important;
+  height: auto;
+  width: auto;
+  -webkit-appearance: none;
+  text-transform: uppercase;
+  transition: .2s ease;
+  z-index: 1;
+  margin-top: rem-calc(24);
+  border-radius: rem-calc(30);
+  box-shadow:1px 1px 2px rgba(black, .1);
+
+  @include hover {
+    color: $black !important;
+    background: lighten($gold, 7%);
+    border-color: lighten($gold, 7%);
+  }
+
+  &.cta--arrow {
+    &::after {
+      @extend .fas;
+      content: fa-content($fa-var-chevron-right);
+      margin-left: rem-calc(12);
+      font-size: rem-calc(22);
+      transition: .2s ease;
+    }
+
+    @include hover {
+      &::after {
+        transform: translateX(rem-calc(3));
+      }
+    }
+  }
+
+  &.cta--arrow-down {
+    &::after {
+      @extend .fas;
+      content: fa-content($fa-var-chevron-down);
+      margin-left: rem-calc(12);
+      font-size: rem-calc(22);
+    }
+  }
+
+  &.cta--black-clear-black {
+    border-color: black;
+    background: transparent;
+    color: black;
+  }
+  
+  &.cta--gold-clear-gold {
+    border-color: $gold;
+    background: transparent;
+    color: $gold !important;
+  }
+
+  &.cta--gold-clear-black {
+    border-color: $gold;
+    background: transparent;
+    color: $black !important;
+  }
+}
+
+
+
+
+
+
+
+
+/* Back to Top Button =========================================================== */
+
+.back-to-top {
+  position: fixed;
+  background: rgba($gold, .7);
+  cursor: pointer;
+  width: rem-calc(45);
+  height: rem-calc(40);
+  bottom: rem-calc(20);
+  right: rem-calc(20);
+  z-index: 999;
+  display: none;
+  backface-visibility: hidden;
+  transition: background-color .2s;
+  text-align: center;
+
+  @media screen and (max-width: $mobile1) {
+    display: none !important;
+  }
+
+  @include hover {
+    background-color: rgba($gold, .9);
+  }
+
+  &::before {
+    @extend .fas; content: fa-content($fa-var-chevron-up);
+    color: $white;
+    display: inline-block;
+    font-size: rem-calc(20);
+    line-height: 1;
+    left: 0;
+    top: 50%;
+    position: absolute;
+    width: 100%;
+    margin-top: rem-calc(-9);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* Screen Reader Site Intro ============================================== */
+
+.screen-reader-text {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+
+  &:focus {
+    background: $white;
+    border: 1px solid $black;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba($black, .2);
+    clip: auto;
+    color: $black;
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    height: auto;
+    left: 20px;
+    margin: 0;
+    overflow: visible;
+    padding: 8px 12px;
+    position: fixed;
+    text-decoration: underline;
+    top: 20px;
+    transition: .2s ease;
+    width: auto;
+    z-index: 1000000000;
+  }
+}
+
+
+
+
+

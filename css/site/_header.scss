@@ -1,0 +1,587 @@
+// if logged into Wordpress admin
+body.admin-bar {
+  #header-container {
+    // Sticky Nav
+    &.is-stuck {
+      @media screen and (min-width: $mobile1) {
+        top: rem-calc(32);
+      }
+    }
+  }
+
+  // Off-Canvas for mobile
+  .off-canvas-main-menu {
+    top: calc($main-nav-height-mobile + rem-calc(46));
+  }
+}
+
+
+
+
+
+
+#header-container {
+  position: absolute !important;
+  z-index: 100;
+  width: 100%;
+  transition: .2s background ease;
+  top: 0;
+  left: 0;
+
+  @media screen and (max-width: $mobile1) {
+    position: fixed !important;
+  }
+
+  // Sticky Nav
+  &.is-stuck {
+    @media screen and (max-width: $mobile1) {
+      background: rgba($black, .95);
+    }
+
+    @media screen and (min-width: $mobile1) {
+      position: fixed !important;
+      box-shadow:3px 3px 3px rgba(black, .1);
+      background: rgba($white, .97) !important;
+
+      .header-top {
+        display: none;
+      }
+
+      #header {
+        margin-top: 0;
+        transition: .3s ease;
+
+        .hfsw {
+          height: rem-calc(70);
+          transition: .3s ease;
+  
+          .menu--main:not(.drilldown) {
+            top: rem-calc(13);
+
+            @media screen and (max-width: $desktop-1024) {
+              top: rem-calc(17);
+            }
+
+            & > li {
+              & > a {
+                //padding: rem-calc(25.5 26);
+              }
+
+              &.navindicator {
+                background: linear-gradient(to right, rgba($black, 1), rgba($black, 1), rgba($black, 1));
+              }
+            }
+          }
+
+          .logo {
+            width: rem-calc(260);
+            transition: .3s ease;
+            top: rem-calc(10);
+
+            img {
+              &.white {
+                opacity: 0;
+              }
+
+              &.black {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+#header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: .1s ease;
+  margin-top: $util-nav-height;
+
+  @media screen and (max-width: $mobile1) {
+    margin-top: 0;
+  }
+
+  .hfsw {
+    height: $main-nav-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .1s ease;
+
+    @media screen and (max-width: $mobile1) {
+      height: $main-nav-height-mobile;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+
+  .logo {
+    width: rem-calc(390);
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: .1s;
+    z-index: 3;
+    transform: translateY(rem-calc(0));
+
+    @media screen and (max-width: $desktop-1024) {
+      width: rem-calc(290);
+    }
+
+    @media screen and (max-width: $mobile1) {
+      width: rem-calc(240);
+      top: rem-calc(9);
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: auto;
+
+      &.black {
+        opacity: 0;
+      }
+    }
+  }
+
+  .mobile-number {
+    @include font(14, 14, 400);
+    color: $white;
+    margin-left: rem-calc(24);
+    display: block;
+    transform: translateY(rem-calc(2));
+
+    @media screen and (max-width: 400px) {
+      display: none !important;
+    }
+  }
+
+  // Desktop Menu
+  .menu--main:not(.drilldown) {
+    position: absolute;
+    right: rem-calc(0);
+    top: rem-calc(16);
+    bottom: inherit;
+    transition: top .2s ease;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: $desktop-1024) {
+      top: rem-calc(6);
+    }
+
+    @media screen and (max-width: $mobile1) {
+      position: relative;
+      right: inherit;
+      bottom: inherit;
+    }
+
+    & > li {
+      z-index: 2;
+
+      & > a {
+        background: transparent;
+        text-transform: uppercase;
+        transition: .15s ease;
+        display: flex;
+        align-items: center;
+        font-size: rem-calc(17.5) !important;
+        line-height: rem-calc(19) !important;
+        font-weight: 900;
+        padding: rem-calc(10 18);
+        letter-spacing: rem-calc(0);
+        text-decoration: none;
+
+        @media screen and (max-width: $desktop-1024) {
+          font-size: rem-calc(14) !important;
+          line-height: rem-calc(14) !important;
+          padding: rem-calc(10 12);
+        }
+
+        @include hover {
+          span {
+            color: $gold;
+
+            &::before {
+              content: '';
+              width: 100%;
+              left: 0%;
+              opacity: 0;
+            }
+          }
+        }
+
+        &>span {
+          font-size: rem-calc(17.5) !important;
+          line-height: rem-calc(19) !important;
+          font-weight: 900;
+          color: $gold;
+          transition: .15s ease;
+          position: relative;
+          display: block;
+
+          @media screen and (max-width: $desktop-1024) {
+            font-size: rem-calc(14) !important;
+            line-height: rem-calc(14) !important;
+          }
+
+          &>span {
+            font-weight: 400;
+          }
+
+          &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            left: 0%;
+            bottom: rem-calc(-9);
+            height: rem-calc(2);
+            background: $black;
+            transform: translateZ(0);
+            z-index: 10000;
+            transition: .2s ease;
+            opacity: 0;
+          }
+        }
+      }
+
+      &.current-page {
+        & > a {
+          span {
+            color: $gold;
+            
+            &::before {
+              content: '';
+              width: 100%;
+              left: 0%;
+              opacity: 0;
+            }
+          }
+        }
+      }
+
+      &.is-active {
+        a {
+          span {
+            //color: $green;
+          }
+        }
+      }
+
+      &.cta-button {
+        margin-left: rem-calc(20);
+
+        @media screen and (max-width: $desktop-1024) {
+          margin-left: rem-calc(15);
+        }
+
+        a {
+          @extend %cta;
+          margin-top: 0;
+          letter-spacing: 0;
+          font-weight: 700;
+          border-radius: rem-calc(30);
+          text-shadow: none;
+
+          @media screen and (max-width: $desktop-1024) {
+            transform: translateY(rem-calc(-1));
+          }
+        }
+      }
+
+      // Dropdown Buttons
+      &.is-dropdown-submenu-parent {
+        & > a {
+          span {
+            position: relative;
+
+            &::after {
+              display: none;
+            }
+          }
+        }
+
+        & > a::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // Mobile Menu
+  .menu.drilldown {
+    .is-drilldown-submenu-parent>a::after,
+    .js-drilldown-back>a::before {
+      @extend .fas;
+    }
+
+    @media screen and (max-width: $mobile1) {
+      li {
+        &:not(:last-child) {
+          border-bottom: 1px solid #ddd;
+        }
+
+        a {
+          color: $black;
+          padding: rem-calc(16);
+          position: relative;
+          font-family: $hfont;
+          @include font(22, 22, 600, 0);
+
+          span {
+            font-family: $hfont;
+            @include font(22, 22, 600, 0);
+            display: block;
+            transform: translateY(rem-calc(2));
+          }
+
+          &::after {
+            margin-top: rem-calc(-9);
+            display: block;
+          }
+        }
+
+        ul {
+          background: $green !important;
+        }
+
+        &.external {
+          a {
+            display: flex;
+
+            &::before {
+              content: '\f35d';
+              font-family: "Font Awesome 5 Free";
+              display: block;
+              color: $green;
+              order: 2;
+              font-size: rem-calc(14);
+              margin-left: rem-calc(7);
+              transform: translateY(rem-calc(-1));
+            }
+
+            span {
+              order: 1;
+            }
+          }
+        }
+      }
+
+      .is-drilldown-submenu-parent {
+        &>a {
+          display: flex;
+          align-items: center;
+
+          &::after {
+            border: none;
+            content: fa-content($fa-var-chevron-right);
+            right: rem-calc(35);
+            font-size: rem-calc(20);
+            color: $green;
+          }
+        }
+
+        .indent {
+          padding-left: rem-calc(20);
+        }
+      }
+
+      .js-drilldown-back {
+        a {
+          display: flex;
+          align-items: flex-start;
+
+          &::before {
+            border: none;
+            content: fa-content($fa-var-chevron-left);
+            margin-right: rem-calc(22);
+            font-size: rem-calc(20);
+            color: $green;
+          }
+        }
+      }
+    }
+  }
+
+  .hamburger-icon {
+    display: block;
+    transition: 0.5s ease-in-out;
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+
+    &:focus {
+      outline: medium none;
+    }
+
+    .lines {
+      float: right;
+      margin-left: 8px;
+      width: 32px;
+
+      .line {
+        background: $gold none repeat scroll 0 0;
+        height: 4px;
+        margin-bottom: 5px;
+        transition: 0.5s ease 0s;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &[aria-expanded='true'] {
+      .line:nth-child(1) {
+        margin-bottom: 1px;
+        transform: rotate(45deg) translate(5px, 5px);
+        background: $gold;
+      }
+
+      .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .line:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+        background: $gold;
+      }
+    }
+  }
+}
+
+// Off-Canvas for mobile
+.off-canvas-main-menu {
+  top: $main-nav-height-mobile;
+  right: 0;
+  height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+  transform: translateX(100%);
+  box-shadow: none !important;
+  background: rgba($gold, 1);
+}
+
+.js-off-canvas-overlay {
+  background: rgba($black, 0);
+  display: none;
+}
+
+
+
+
+
+
+/* Nav Indicator =========================================================== */
+
+$naviopacity: .9;
+
+$navi1-left: rem-calc(18); $navi1-width: rem-calc(50);
+$navi2-left: rem-calc(104); $navi2-width: rem-calc(156);
+$navi3-left: rem-calc(297); $navi3-width: rem-calc(96);
+$navi4-left: rem-calc(430); $navi4-width: rem-calc(86);
+
+$navi1-left-1024: rem-calc(13); $navi1-width-1024: rem-calc(39);
+$navi2-left-1024: rem-calc(77); $navi2-width-1024: rem-calc(124);
+$navi3-left-1024: rem-calc(226); $navi3-width-1024: rem-calc(76);
+$navi4-left-1024: rem-calc(327); $navi4-width-1024: rem-calc(69);
+
+.main-menu li.current-page:nth-child(1) ~ li.navindicator,
+.main-menu .menu li:nth-child(1):hover ~ li.navindicator {
+  left: $navi1-left;
+  width: $navi1-width;
+  opacity: $naviopacity;
+
+  @media screen and (max-width: $desktop-1024) {
+    left: $navi1-left-1024;
+    width: $navi1-width-1024;
+  }
+}
+
+.main-menu li.current-page:nth-child(2) ~ li.navindicator,
+.main-menu .menu li:nth-child(2):hover ~ li.navindicator {
+  left: $navi2-left;
+  width: $navi2-width;
+  opacity: $naviopacity;
+
+  @media screen and (max-width: $desktop-1024) {
+    left: $navi2-left-1024;
+    width: $navi2-width-1024;
+  }
+}
+
+.main-menu li.current-page:nth-child(3) ~ li.navindicator,
+.main-menu .menu li:nth-child(3):hover ~ li.navindicator {
+  left: $navi3-left;
+  width: $navi3-width;
+  opacity: $naviopacity;
+
+  @media screen and (max-width: $desktop-1024) {
+    left: $navi3-left-1024;
+    width: $navi3-width-1024;
+  }
+}
+
+.main-menu li.current-page:nth-child(4) ~ li.navindicator,
+.main-menu .menu li:nth-child(4):hover ~ li.navindicator {
+  left: $navi4-left;
+  width: $navi4-width;
+  opacity: $naviopacity;
+
+  @media screen and (max-width: $desktop-1024) {
+    left: $navi4-left-1024;
+    width: $navi4-width-1024;
+  }
+}
+
+.main-menu li.navindicator {
+  display: block;
+  width: rem-calc(0);
+  height: rem-calc(2);
+  bottom: rem-calc(7);
+  padding: 0;
+  z-index: 1 !important;
+  opacity: 0;
+  left: 40%;
+  transition: .2s ease;
+  position: absolute;
+  background: $white;
+  //background: linear-gradient(to right, rgba($white, 1), rgba($white, 1), rgba($white, 1));
+}
+
+
+
+
+
+
+body.landing-page {
+  #header {
+    .logo {
+    }
+  
+    // Desktop Menu
+    .menu {
+      & > li {
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4) {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+
